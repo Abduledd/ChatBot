@@ -1,5 +1,6 @@
 import openai
 import tkinter as tk
+import pandas as pd
 
 
 openai.api_key = "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"
