@@ -11,17 +11,24 @@ const Chatbox = () => {
 
   const handleSendMessage = async () => {
     if (userInput.trim() === "") return;
+    console.log("Sending message:", userInput); // Log the user's message before sending
 
     const newChat = [...chatHistory, { text: userInput, sender: "user" }];
     setChatHistory(newChat);
-
+    console.log(newChat);
+    console.log("Before response");
     try {
-      const response = await axios.post("http://localhost:5000/", {
-        message: userInput,
-      });
+      const response = await axios.post(
+        "http://localhost:5000/api/sendMessage",
+        {
+          message: userInput,
+        }
+      );
+
       const botReply = response.data.message;
       const newChatWithBot = [...newChat, { text: botReply, sender: "bot" }];
       setChatHistory(newChatWithBot);
+      console.log("Bot's reply:", botReply); // Log the bot's reply after receiving
     } catch (error) {
       console.error("Error sending message:", error);
     }
