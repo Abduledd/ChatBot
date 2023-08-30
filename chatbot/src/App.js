@@ -1,16 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
 import Chatbox from './components/chatbot';
+import './index.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <header className="App-header">
+    <div className="flex bg-slate-900">
+      <header className="">
+        <header className="">
           <h1>Chatbot UI</h1>
         </header>
-        <Chatbox />
+
       </header>
+      <Chatbox className="" />
     </div>
   );
 }

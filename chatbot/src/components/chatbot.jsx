@@ -37,22 +37,26 @@ const Chatbox = () => {
   };
 
   return (
-    <div className="chatbox">
-      <div className="chat-history">
+    <div className="bg-black ">
+      <div className="">
         {chatHistory.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
             {message.text}
           </div>
         ))}
       </div>
-      <div className="user-input">
+      <div className="w-20 bg-black">
         <input
           type="text"
           placeholder="Type your message..."
           value={userInput}
           onChange={handleUserInput}
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleSendMessage}>
+          Send
+        </button>
       </div>
     </div>
   );
