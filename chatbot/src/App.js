@@ -11,7 +11,7 @@ function App() {
         </header>
 
       </header>
-      <Chatbox className="flex grow" />
+      <Chatbox />
     </div>
   );
 }

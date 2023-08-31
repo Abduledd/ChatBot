@@ -29,6 +29,7 @@ const Chatbox = () => {
       const botReply = response.data.message;
       const newChatWithBot = [...newChat, { text: botReply, sender: "bot" }];
       setChatHistory(newChatWithBot);
+      setUserInput("");
       console.log("Bot's reply:", botReply); // Log the bot's reply after receiving
       console.log(newChat);
     } catch (error) {
@@ -39,7 +40,7 @@ const Chatbox = () => {
   };
 
   return (
-    <div className="flex-1 p-10 sm:p-6 justify-between flex flex-col h-screen bg-slate-200 mb-5 rounded-lg">
+    <div className="flex-1 p-10 sm:p-6 justify-between flex flex-col max-h-screen overflow-hidden bg-slate-200 mb-5 rounded-lg ">
       <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
         <div class="relative flex items-center space-x-4">
           <div class="relative">
@@ -114,7 +115,7 @@ const Chatbox = () => {
       </div>
       <div
         name="messages"
-        className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
+        className="flex flex-col space-y-4 p-3 overflow-y-auto">
         {chatHistory.map((message, index) => (
           <div
             key={index}
@@ -172,7 +173,10 @@ const Chatbox = () => {
           />
           <button
             className="inline-flex items-center justify-center rounded-lg px-4 py-3 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-400 focus:outline-none"
-            onClick={handleSendMessage}>
+            onClick={() => {
+              handleSendMessage();
+              setUserInput("");
+            }}>
             <span className="font-bold">Send</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
