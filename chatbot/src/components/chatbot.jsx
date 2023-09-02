@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 // import messageBot from "./messageBot";
 // import messageUser from "./messageUser";
-import chatBotImg from "../assets/download.png";
+import chatBotImg from "../assets/download.jpg";
+import userImg from "../assets/user.png";
 const Chatbox = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [userInput, setUserInput] = useState("");
@@ -70,11 +71,11 @@ const Chatbox = () => {
           <div
             key={index}
             className={`message ${
-              message.sender === "bot"
+              message.sender === "user"
                 ? "px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white"
                 : "px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600"
             }`}>
-            {message.sender === "bot" ? (
+            {message.sender === "user" ? (
               <div>
                 <div class="flex items-end justify-end">
                   <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
@@ -85,8 +86,8 @@ const Chatbox = () => {
                     </div>
                   </div>
                   <img
-                    src={chatBotImg}
-                    alt="Bot"
+                    src={userImg}
+                    alt="user"
                     class="w-6 h-6 rounded-full order-2"
                   />
                 </div>
@@ -103,7 +104,7 @@ const Chatbox = () => {
                   </div>
                   <img
                     src={chatBotImg}
-                    alt="userPhoto"
+                    alt="bot"
                     class="w-6 h-6 rounded-full order-1"
                   />
                 </div>
