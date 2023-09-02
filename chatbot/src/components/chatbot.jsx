@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-// import messageBot from "./messageBot";
-// import messageUser from "./messageUser";
 import chatBotImg from "../assets/download.jpg";
 import userImg from "../assets/user.png";
 const Chatbox = () => {
