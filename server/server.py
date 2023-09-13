@@ -12,17 +12,17 @@ def send_message():
     user_input = request.json.get('message')
     print('marche bien 1')
     try:
-        # completions = openai.Completion.create(
-        #     engine='text-davinci-002',
-        #     prompt=user_input,
-        #     max_tokens=1024,
-        #     n=1,
-        #     stop=None,
-        #     temperature=0.5,
-        # )
+        completions = openai.Completion.create(
+            engine='text-davinci-002',
+            prompt=user_input,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.5,
+        )
         print('marche bien 1')
-        # bot_reply = completions.choices[0].text
-        bot_reply = "Response !!"
+        bot_reply = completions.choices[0].text
+        # bot_reply = "Response !!"
         return jsonify({'message': bot_reply})
     except Exception as error:
         print('Error generating response:', error)
