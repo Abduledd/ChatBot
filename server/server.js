@@ -5,7 +5,6 @@ const OpenAI = require('openai');
 
 const OPENAI_API_KEY = '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';
 
-
 const app = express();
 
 const openai = new OpenAI({
