@@ -18,6 +18,7 @@ const Chatbox = () => {
     setChatHistory(newChat);
     console.log(newChat);
     try {
+      console.log("before axios.post");
       const response = await axios.post(
         "http://localhost:5000/api/sendMessage",
         {
@@ -25,6 +26,7 @@ const Chatbox = () => {
         }
       );
 
+      console.log("before response");
       const botReply = response.data.message;
       const newChatWithBot = [...newChat, { text: botReply, sender: "bot" }];
       setChatHistory(newChatWithBot);

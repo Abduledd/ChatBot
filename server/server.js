@@ -2,8 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const OpenAI = require('openai');
+const fs = require('fs');
 
-const OPENAI_API_KEY = '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';
+const config = JSON.parse(fs.readFileSync('config.json'));
+const API_KEY = config.api_key;
+
+const OPENAI_API_KEY = API_KEY;
+
 
 const app = express();
 

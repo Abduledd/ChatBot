@@ -1,16 +1,28 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import openai
+import os
+import json
 
 app = Flask(__name__)
 CORS(app)
 
-openai.api_key = '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'
+
+with open('config.json', 'r') as f:
+    config = json.load(f)
+
+api_key = config.get('api_key')
+
+if not api_key:
+    raise ValueError('API key not found in the configuration file.')
+
+
+openai.api_key = api_key
+
 
 @app.route('/api/sendMessage', methods=['POST'])
 def send_message():
     user_input = request.json.get('message')
-    print('marche bien 1')
     try:
         completions = openai.Completion.create(
             engine='text-davinci-002',
