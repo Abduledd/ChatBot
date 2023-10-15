@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import openai
-import os
 import json
 
 app = Flask(__name__)
@@ -19,26 +18,26 @@ if not api_key:
 
 openai.api_key = api_key
 
-
-@app.route('/api/sendMessage', methods=['POST'])
-def send_message():
-    user_input = request.json.get('message')
+def send_message(user_input):
     try:
-        completions = openai.Completion.create(
-            engine='text-davinci-002',
-            prompt=user_input,
-            max_tokens=1024,
-            n=1,
-            stop=None,
-            temperature=0.5,
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": user_input},
+            ]
         )
-        print('marche bien 1')
-        bot_reply = completions.choices[0].text
-        # bot_reply = "Response !!"
+        bot_reply = response.choices[0]["message"]["content"] 
+        
         return jsonify({'message': bot_reply})
     except Exception as error:
         print('Error generating response:', error)
         return jsonify({'message': 'An error occurred'})
+
+@app.route('/api/sendMessage', methods=['POST'])
+def handle_message():
+    user_input = request.json.get('message')
+    return send_message(user_input)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
