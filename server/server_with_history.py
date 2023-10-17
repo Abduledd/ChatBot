@@ -41,7 +41,6 @@ def send_message(user_input):
 @app.route('/api/sendMessage', methods=['POST'])
 def handle_message():
     user_input = request.json.get('message')
-    print(history)
     return send_message(user_input)
 
 if __name__ == '__main__':
